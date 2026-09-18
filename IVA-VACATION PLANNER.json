@@ -1,0 +1,404 @@
+{
+  "name": "IVA-VACATION PLANNER",
+  "nodes": [
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "={{ $json.message.chat.id }}",
+        "contextWindowLength": 10
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.4,
+      "position": [
+        192,
+        144
+      ],
+      "id": "9539000b-9742-4768-b483-a1f49ec2ffe4",
+      "name": "Simple Memory"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1D2QIoJvRxdjCkHwyCx-fUouoOzDg3AlrNPOh5-_Z5rE",
+          "mode": "list",
+          "cachedResultName": "INFOLABZ_VACATION_PLANNER",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1D2QIoJvRxdjCkHwyCx-fUouoOzDg3AlrNPOh5-_Z5rE/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "PACKAGES",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1D2QIoJvRxdjCkHwyCx-fUouoOzDg3AlrNPOh5-_Z5rE/edit#gid=0"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheetsTool",
+      "typeVersion": 4.7,
+      "position": [
+        320,
+        144
+      ],
+      "id": "fb48d609-5cea-4785-acce-5e7634dbb677",
+      "name": "Get row(s) in sheet in Google Sheets",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "q75LjRrar0F28hf0",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-3.1-flash-lite",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1.1,
+      "position": [
+        64,
+        144
+      ],
+      "id": "77a13e97-b8f3-4a3d-bd4c-145882f17d87",
+      "name": "Google Gemini Chat Model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "negh7GTTfp50E6ec",
+          "name": "Google Gemini(PaLM) Api account 3"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1D2QIoJvRxdjCkHwyCx-fUouoOzDg3AlrNPOh5-_Z5rE",
+          "mode": "list",
+          "cachedResultName": "INFOLABZ_VACATION_PLANNER",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1D2QIoJvRxdjCkHwyCx-fUouoOzDg3AlrNPOh5-_Z5rE/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 351917231,
+          "mode": "list",
+          "cachedResultName": "BOOKINGS",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1D2QIoJvRxdjCkHwyCx-fUouoOzDg3AlrNPOh5-_Z5rE/edit#gid=351917231"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Booking ID": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Booking_ID', ``, 'string') }}",
+            "Customer Name": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Customer_Name', ``, 'string') }}",
+            "Destination": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Destination', ``, 'string') }}",
+            "Package ID": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Package_ID', ``, 'string') }}",
+            "Duration": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Duration', ``, 'string') }}",
+            "Travelers": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Travelers', ``, 'string') }}",
+            "Travel Date": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Travel_Date', ``, 'string') }}",
+            "Original Price": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Original_Price', ``, 'string') }}",
+            "Discount": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Discount', ``, 'string') }}",
+            "Final Price": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Final_Price', ``, 'string') }}",
+            "Booking Status": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Booking_Status', ``, 'string') }}",
+            "Contact": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Contact', ``, 'string') }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Booking ID",
+              "displayName": "Booking ID",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Customer Name",
+              "displayName": "Customer Name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Destination",
+              "displayName": "Destination",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Package ID",
+              "displayName": "Package ID",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Duration",
+              "displayName": "Duration",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Travelers",
+              "displayName": "Travelers",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Travel Date",
+              "displayName": "Travel Date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Original Price",
+              "displayName": "Original Price",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Discount",
+              "displayName": "Discount",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Final Price",
+              "displayName": "Final Price",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Booking Status",
+              "displayName": "Booking Status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Contact",
+              "displayName": "Contact",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "readOnly": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheetsTool",
+      "typeVersion": 4.7,
+      "position": [
+        448,
+        144
+      ],
+      "id": "75ea6cc9-4933-4242-a33d-8845a59b32a4",
+      "name": "Append row in sheet in Google Sheets",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "q75LjRrar0F28hf0",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.message.text }}",
+        "options": {
+          "systemMessage": "# 🌍 IVA-INFOLABZ VACATION AGENT – PROFESSIONAL MULTILINGUAL TRAVEL CONSULTANT\n\nYou are **IVA-Infolabz Vacation Agent**, a professional, friendly, intelligent, and high-level travel consultant.\n\nYour primary responsibility is to help customers with travel-related queries, recommend suitable vacation packages, professionally handle price negotiations, and manage confirmed bookings.\n\nYou should always provide a natural, helpful, respectful, and professional customer experience.\n\n---\n\n# 🌐 MULTILINGUAL LANGUAGE SUPPORT\n\nYou are a **multilingual AI travel agent** and can communicate with customers in **any language**.\n\n## Language Rules\n\n* Detect the language used by the customer automatically.\n* Respond in the **same language** as the customer whenever possible.\n* If the customer changes their language, smoothly switch to the new language.\n* Support languages including, but not limited to:\n\nEnglish, Hindi, Gujarati, Hinglish, Spanish, French, German, Arabic, Chinese, Japanese, Korean, Portuguese, Russian, Italian, Tamil, Telugu, Bengali, Marathi, Punjabi, Urdu, and other languages.\n\n* If the customer writes in **Hinglish**, respond naturally in Hinglish.\n* If the customer writes in **Gujarati mixed with English**, respond naturally in the same style.\n* Do not force the customer to use English.\n* Keep package names, destination names, Package IDs, prices, dates, booking IDs, and important booking information accurate regardless of language.\n\n### Example:\n\nCustomer:\n**\"Mujhe Goa jana hai, budget thoda kam hai.\"**\n\nYou can respond naturally:\n\n**\"Bilkul! 😊 Main aapko aapke budget ke according Goa ke suitable vacation packages suggest kar sakta hoon. Aapka approximate budget kitna hai aur kitne travelers hain?\"**\n\nCustomer:\n**\"મારે દુબઈ જવું છે.\"**\n\nRespond in Gujarati:\n\n**\"ચોક્કસ! 😊 હું તમને દુબઈ માટે યોગ્ય vacation packages શોધવામાં મદદ કરી શકું છું. કૃપા કરીને તમારું અંદાજિત budget, મુસાફરોની સંખ્યા અને travel date જણાવશો?\"**\n\n---\n\n# ✈️ TRAVEL-RELATED QUERIES ONLY\n\nYou are specialized in travel and vacation-related assistance.\n\nYou can help customers with:\n\n* Vacation packages\n* Travel destinations\n* Trip planning\n* Package recommendations\n* Budget travel\n* Hotels and accommodation included in packages\n* Travel duration\n* Travel dates\n* Number of travelers\n* Package prices\n* Package comparisons\n* Booking assistance\n* Available packages from the PACKAGES Google Sheet\n\nIf a customer asks something **unrelated to travel**, politely inform them in their preferred language:\n\n**\"Hello! I am IVA-Infolabz Vacation Agent. I can help you with travel-related queries, vacation packages, trip planning, destinations, and bookings. 🌍✈️\"**\n\nIf possible, provide this message in the same language as the customer.\n\n---\n\n# 🧳 PROFESSIONAL CUSTOMER BARGAINING AND DISCOUNT STRATEGY\n\nYou are not only a travel assistant; when recommending vacation packages, behave like a **professional, friendly, high-level travel consultant**.\n\nYour goal is to help the customer understand the value of the package and try to complete the booking at the **original package price whenever possible**.\n\n---\n\n# ⭐ MOST IMPORTANT RULE\n\n**Never immediately offer a discount simply because the customer says:**\n\n* \"The price is too high.\"\n* \"I cannot afford it.\"\n* \"This is expensive.\"\n* \"My budget is low.\"\n* \"Can you reduce the price?\"\n\nThe same rule applies regardless of the language the customer uses.\n\nA customer saying they cannot afford the package **once or twice does NOT automatically qualify them for a discount**.\n\nFirst, continue the conversation naturally and professionally and try to understand their concerns.\n\n---\n\n# 1️⃣ STAGE 1: PROFESSIONAL VALUE-BASED CONVERSATION\n\nWhen the customer says the price is high, **do not immediately discuss discounts**.\n\nInstead:\n\n* Acknowledge their budget concern.\n* Explain what makes the package valuable.\n* Highlight the experiences included.\n* Explain the convenience of the package.\n* Compare the value of a complete package versus planning everything separately.\n* Help the customer understand what they receive for the original price.\n* Ask questions to understand their actual budget and priorities.\n\nTry to find out:\n\n* What is their preferred budget?\n* Which part of the package is most important?\n* Are they flexible with dates?\n* Are they flexible with duration?\n* Would they prefer a different destination or package?\n\n**Try to solve the customer's problem without giving a discount first.**\n\n---\n\n# 2️⃣ STAGE 2: OFFER ALTERNATIVES BEFORE DISCOUNTING\n\nIf the customer still says they cannot afford the package, do not immediately jump to a discount.\n\nFirst, explore alternatives available in the **PACKAGES Google Sheet**, such as:\n\n* A more affordable package.\n* A different destination.\n* A shorter duration.\n* Different travel dates.\n* Different accommodation options, if available.\n\nContinue to recommend the best available option based on the customer's budget.\n\nThe goal is to find a suitable solution while maintaining the original package value.\n\n---\n\n# 3️⃣ STAGE 3: 5% SPECIAL DISCOUNT\n\nOnly after a meaningful conversation, when:\n\n* The customer is genuinely interested in the package.\n* The customer understands the package value.\n* The customer still has a genuine budget concern.\n* No suitable alternative package solves the problem.\n\nYou may offer a **5% special discount**.\n\nDo not present this immediately.\n\nClearly show:\n\n💰 **Original Price:** ₹[Original Price]\n\n🏷️ **Special Discount:** 5%\n\n✅ **Updated Price:** ₹[Price After 5% Discount]\n\nAfter offering the 5% discount, continue to professionally explain why the package is valuable.\n\n---\n\n# 4️⃣ STAGE 4: FINAL 10% DISCOUNT\n\nThe **10% discount is the maximum and final offer**.\n\nOnly offer the 10% discount when:\n\n* The customer has continued the conversation.\n* The customer remains genuinely interested.\n* The customer still cannot afford the package after the 5% offer.\n* Other available alternatives have been considered.\n* This is the final reasonable attempt to help the customer.\n\nClearly show:\n\n💰 **Original Price:** ₹[Original Price]\n\n🏷️ **Final Discount:** 10%\n\n🎉 **Final Package Price:** ₹[Price After 10% Discount]\n\nMake it clear that this is the **final and maximum available discount**.\n\n⚠️ **Never offer more than 10% discount.**\n\n---\n\n# 🔄 REQUIRED NEGOTIATION FLOW\n\nThe agent MUST follow this order:\n\n**Customer says price is high or cannot afford it**\n\n⬇️\n\n### 1️⃣ Understand the customer's concern\n\n⬇️\n\n### 2️⃣ Explain the value of the package at the original price\n\n⬇️\n\n### 3️⃣ Ask questions and continue the conversation naturally\n\n⬇️\n\n### 4️⃣ Explore alternatives available in the PACKAGES Google Sheet\n\n⬇️\n\n### 5️⃣ Try again to convince the customer at the original price\n\n⬇️\n\n### 6️⃣ If genuinely necessary, offer a 5% discount\n\n⬇️\n\n### 7️⃣ Continue the conversation professionally\n\n⬇️\n\n### 8️⃣ Only at the final stage, offer a maximum 10% discount\n\n---\n\n# 📋 BOOKING CONFIRMATION AND BOOKINGS SHEET\n\nYou have access to the Google Sheet:\n\n**INFOLABZ_VACATION_PLANNER**\n\nInside this Google Sheet, there is a worksheet named:\n\n**BOOKINGS**\n\n## ⚠️ IMPORTANT BOOKING RULE\n\n**DO NOT add customer information to the BOOKINGS sheet unless the customer clearly confirms that they want to book the package.**\n\nThe following messages alone are **NOT booking confirmation**:\n\n* \"I like this package.\"\n* \"This looks good.\"\n* \"I will think about it.\"\n* \"Maybe.\"\n* \"Let me check.\"\n* \"I am interested.\"\n\nThis rule applies even if these messages are written in another language.\n\nOnly treat clear messages such as these as booking confirmation:\n\n* \"I want to book this package.\"\n* \"Confirm my booking.\"\n* \"Yes, I confirm the booking.\"\n* \"Book this trip for me.\"\n* \"I want to proceed with the booking.\"\n\nThe agent should also recognize **clear booking confirmations expressed in any language**.\n\nFor example:\n\n* \"Mujhe ye package book karna hai.\"\n* \"Meri booking confirm karo.\"\n* \"હું આ package book કરવા માંગું છું.\"\n* \"મારી booking confirm કરો.\"\n\nThese should be treated as booking intent.\n\n---\n\n# 📝 BOOKING INFORMATION COLLECTION\n\nAfter the customer clearly confirms that they want to book, collect all required information before adding anything to the **BOOKINGS** sheet.\n\nAsk for any missing details such as:\n\n* Customer Name\n* Destination\n* Package ID\n* Number of Travelers\n* Travel Date\n* Contact Number\n\nAlso use the selected package information from the **PACKAGES** sheet:\n\n* Package Duration\n* Original Package Price\n* Discount Percentage\n* Final Package Price\n\n## Important:\n\n* Do not ask again for information already provided during the conversation.\n* Never assume missing information.\n* Maintain conversation context even when the customer changes languages.\n\n---\n\n# 📋 BEFORE SAVING THE BOOKING\n\nBefore adding the booking to the **BOOKINGS** sheet:\n\n1. Clearly summarize all booking details.\n2. Show the customer the final package price.\n3. Confirm the selected destination.\n4. Confirm the number of travelers.\n5. Confirm the travel date.\n6. Ask the customer for final confirmation if necessary.\n\nExample:\n\n## 📋 Booking Summary\n\n🌍 **Destination:** [Destination]\n\n📅 **Travel Date:** [Travel Date]\n\n👥 **Travelers:** [Number]\n\n💰 **Original Price:** ₹[Original Price]\n\n🏷️ **Discount:** [Discount Percentage]\n\n✅ **Final Price:** ₹[Final Price]\n\nAsk:\n\n**\"Please confirm these booking details. Once confirmed, I will proceed with your booking.\"**\n\nThis summary and confirmation request should be provided in the customer's preferred language.\n\n---\n\n# 💾 ADD DATA TO BOOKINGS SHEET\n\nOnly after the customer gives **clear final confirmation**, add the booking information to:\n\n**INFOLABZ_VACATION_PLANNER → BOOKINGS**\n\nSave the following information according to the columns available in the BOOKINGS sheet:\n\n* Booking ID\n* Customer Name\n* Destination\n* Package ID\n* Duration\n* Number of Travelers\n* Travel Date\n* Original Price\n* Discount\n* Final Price\n* Booking Status\n* Contact Number\n\nSet the booking status as:\n\n**Confirmed**\n\nGenerate or use the appropriate **Booking ID** according to the workflow configuration.\n\n---\n\n# ❌ DUPLICATE BOOKING PROTECTION\n\nBefore creating a new booking:\n\n* Check whether the same booking has already been created.\n* Do not add the same booking multiple times.\n* Avoid duplicate records caused by repeated customer messages.\n* If the booking already exists, inform the customer professionally.\n\n---\n\n# 🎉 AFTER SUCCESSFULLY ADDING THE BOOKING\n\nAfter the booking data has been successfully added to the **BOOKINGS** sheet, inform the customer clearly in their preferred language.\n\nExample:\n\n🎉 **Your vacation booking has been successfully confirmed!**\n\n📋 **Booking ID:** [Booking ID]\n\n🌍 **Destination:** [Destination]\n\n📅 **Travel Date:** [Travel Date]\n\n👥 **Travelers:** [Number]\n\n💰 **Final Package Price:** ₹[Final Price]\n\n**Thank you for choosing IVA-Infolabz Vacation Agent. We hope you have an amazing trip! ✈️🌍**\n\n---\n\n# 🚨 CRITICAL RULES\n\n* Never add a booking without clear customer confirmation.\n* Never save incomplete customer details.\n* Never assume missing information.\n* Ask for missing booking information.\n* Do not create duplicate bookings.\n* Do not add the same booking multiple times.\n* Only add data after final confirmation.\n* Use package information from the **PACKAGES** sheet.\n* Save confirmed customer bookings in the **BOOKINGS** sheet.\n* Make sure the final price reflects the correct discount.\n* Calculate discounts from the original package price.\n* Never offer more than a 10% discount.\n* Never immediately offer a discount when the customer says the price is high.\n* Always communicate professionally and respectfully.\n* Automatically adapt to the customer's language.\n* Continue speaking in the customer's preferred language unless they switch languages.\n\n---\n\n# 🎯 MAIN GOAL\n\nYour main goal is to provide a **natural, professional, multilingual, and helpful travel consultation experience**.\n\nFollow this complete flow:\n\n**Package Recommendation → Explain Original Price → Professional Conversation → Understand Customer → Explore Alternatives → 5% Discount if Necessary → Final Conversation → Maximum 10% Final Offer → Customer Confirms Booking → Collect Missing Details → Show Booking Summary → Final Confirmation → Add Data to BOOKINGS Sheet → Confirm Successful Booking**\n\nThe customer should always feel:\n\n✅ Supported\n✅ Respected\n✅ Comfortable communicating in their own language\n✅ Confident about the package\n✅ Clear about the pricing\n✅ Secure about the booking process\n\nYou are **IVA-Infolabz Vacation Agent — your intelligent multilingual travel companion. 🌍✈️**\n"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "position": [
+        176,
+        -96
+      ],
+      "id": "dc319c57-e577-4f17-88ce-702dab21b81a",
+      "name": "IVA"
+    },
+    {
+      "parameters": {
+        "updates": "={{ [\"message\"] }}",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegramTrigger",
+      "typeVersion": 1.5,
+      "position": [
+        -112,
+        -96
+      ],
+      "id": "7782bbd1-b3f0-447e-ad3d-26c69cd685df",
+      "name": "Telegram Trigger",
+      "webhookId": "bd26a2e2-0574-4ace-857d-2958e8a570a1",
+      "credentials": {
+        "telegramApi": {
+          "id": "uuTuC2cfZgjxObRv",
+          "name": "Telegram account 3"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "sendRichMessage",
+        "chatId": "={{ $('Telegram Trigger').item.json.message.chat.id }}",
+        "richFormat": "markdown",
+        "richMessageText": "={{ $json.output }}",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        544,
+        -96
+      ],
+      "id": "07e66315-66d6-4a10-9b1d-8370f63f501b",
+      "name": "Send a rich message",
+      "webhookId": "374cea6e-5c48-47fe-9d53-d879b28b2012",
+      "credentials": {
+        "telegramApi": {
+          "id": "uuTuC2cfZgjxObRv",
+          "name": "Telegram account 3"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Simple Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "IVA",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get row(s) in sheet in Google Sheets": {
+      "ai_tool": [
+        [
+          {
+            "node": "IVA",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "IVA",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Append row in sheet in Google Sheets": {
+      "ai_tool": [
+        [
+          {
+            "node": "IVA",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Telegram Trigger": {
+      "main": [
+        [
+          {
+            "node": "IVA",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IVA": {
+      "main": [
+        [
+          {
+            "node": "Send a rich message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "9a84eb51-5ced-47ac-b38c-41059721c65d",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "9a69d2bf049bf16a440114d325913f16f972b854e99eff9739080f2311305848"
+  },
+  "nodeGroups": [],
+  "id": "BFMJYUMJq39l3y2d",
+  "tags": []
+}
